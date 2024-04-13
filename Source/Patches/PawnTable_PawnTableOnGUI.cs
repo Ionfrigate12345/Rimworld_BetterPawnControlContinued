@@ -188,7 +188,7 @@ namespace BetterPawnControl.Patches
         {
             List<FloatMenuOption> list = new List<FloatMenuOption>();
 
-            foreach (Policy assignPolicy in AssignManager.policies)
+            foreach (BPCPolicy assignPolicy in AssignManager.policies)
             {
                 list.Add(
                     new FloatMenuOption(assignPolicy.label,
@@ -261,7 +261,7 @@ namespace BetterPawnControl.Patches
         {
             List<FloatMenuOption> list = new List<FloatMenuOption>();
 
-            foreach (Policy restrictPolicy in ScheduleManager.policies)
+            foreach (BPCPolicy restrictPolicy in ScheduleManager.policies)
             {
                 list.Add(
                     new FloatMenuOption(restrictPolicy.label,
@@ -335,7 +335,7 @@ namespace BetterPawnControl.Patches
         {
             List<FloatMenuOption> list = new List<FloatMenuOption>();
 
-            foreach (Policy workPolicy in WorkManager.policies)
+            foreach (BPCPolicy workPolicy in WorkManager.policies)
             {
                 list.Add(
                     new FloatMenuOption(workPolicy.label,
@@ -386,7 +386,7 @@ namespace BetterPawnControl.Patches
         {
             List<FloatMenuOption> list = new List<FloatMenuOption>();
 
-            foreach (Policy animalPolicy in AnimalManager.policies)
+            foreach (BPCPolicy animalPolicy in AnimalManager.policies)
             {
                 list.Add(
                     new FloatMenuOption(animalPolicy.label,
@@ -437,7 +437,7 @@ namespace BetterPawnControl.Patches
         {
             List<FloatMenuOption> list = new List<FloatMenuOption>();
 
-            foreach (Policy mechPolicy in MechManager.policies)
+            foreach (BPCPolicy mechPolicy in MechManager.policies)
             {
                 list.Add(
                     new FloatMenuOption(mechPolicy.label,
@@ -489,7 +489,7 @@ namespace BetterPawnControl.Patches
         {
             List<FloatMenuOption> list = new List<FloatMenuOption>();
 
-            foreach (Policy weaponsPolicy in WeaponsManager.policies)
+            foreach (BPCPolicy weaponsPolicy in WeaponsManager.policies)
             {
                 list.Add(
                     new FloatMenuOption(weaponsPolicy.label,

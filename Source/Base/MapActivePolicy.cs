@@ -5,11 +5,11 @@ namespace BetterPawnControl
     public class MapActivePolicy : IExposable
     {
         internal int mapId = 0;
-        internal Policy activePolicy = null;
+        internal BPCPolicy activePolicy = null;
 
         public MapActivePolicy() { }
 
-        public MapActivePolicy(int mapId, Policy activePolicy)
+        public MapActivePolicy(int mapId, BPCPolicy activePolicy)
         {
             this.mapId = mapId;
             this.activePolicy = activePolicy;
@@ -23,7 +23,7 @@ namespace BetterPawnControl
         public void ExposeData()
         {
             Scribe_Values.Look<int>(ref mapId, "mapId", 0, true);
-            Scribe_Deep.Look<Policy>(ref activePolicy, "activePolicy");
+            Scribe_Deep.Look<BPCPolicy>(ref activePolicy, "activePolicy");
         }
     }
 }

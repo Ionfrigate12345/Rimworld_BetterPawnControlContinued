@@ -9,7 +9,7 @@ namespace BetterPawnControl
     [StaticConstructorOnStartup]
     class AnimalManager : Manager<AnimalLink>
     {
-        internal static void DeletePolicy(Policy policy)
+        internal static void DeletePolicy(BPCPolicy policy)
         {
             if (policy != null && policy.id > 0)
             {
@@ -111,7 +111,7 @@ namespace BetterPawnControl
         /// <summary>
         /// Get and set all links from an AnimalPolicy 
         /// </summary>
-        internal static void LoadState(List<AnimalLink> links, List<Pawn> pawns, Policy policy)
+        internal static void LoadState(List<AnimalLink> links, List<Pawn> pawns, BPCPolicy policy)
         {
             List<AnimalLink> mapLinks = null;
             List<AnimalLink> zoneLinks = null;
@@ -144,7 +144,7 @@ namespace BetterPawnControl
             AnimalManager.SetActivePolicy(policy);
         }
 
-        internal static void LoadState(Policy policy)
+        internal static void LoadState(BPCPolicy policy)
         {
             //IEnumerable<Pawn> pawns = 
             //    from p in Find.CurrentMap.mapPawns.PawnsInFaction(Faction.OfPlayer)
@@ -159,7 +159,7 @@ namespace BetterPawnControl
         /// window
         /// </summary>
         internal static void UpdateState(
-            List<AnimalLink> links, List<Pawn> pawns, Policy policy)
+            List<AnimalLink> links, List<Pawn> pawns, BPCPolicy policy)
         {
             List<AnimalLink> mapLinks = null;
             List<AnimalLink> zoneLinks = null;
@@ -249,7 +249,7 @@ namespace BetterPawnControl
         internal static void PrintAllAnimalPolicies(string spacer = "\n")
         {
             Log.Message( "[BPC] ### List Animal Policies [" + AnimalManager.policies.Count + "] ###");
-            foreach (Policy p in AnimalManager.policies)
+            foreach (BPCPolicy p in AnimalManager.policies)
             {
                 Log.Message("[BPC]\t" + p.ToString());
             }

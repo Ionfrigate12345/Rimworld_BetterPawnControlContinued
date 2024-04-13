@@ -66,29 +66,29 @@ namespace BetterPawnControl
 					Scribe_Values.Look<MedicalCareCategory>(ref AssignManager._defaulSlaveMedCare, "DefaultSlaveMedCare");
 				}
 				
-				Scribe_Collections.Look<Policy>(ref AssignManager.policies,"AssignPolicies", LookMode.Deep);
+				Scribe_Collections.Look<BPCPolicy>(ref AssignManager.policies,"AssignPolicies", LookMode.Deep);
 				Scribe_Collections.Look<AssignLink>(ref AssignManager.links, "AssignLinks", LookMode.Deep);
 				Scribe_Collections.Look<MapActivePolicy>(ref AssignManager.activePolicies, "AssignActivePolicies", LookMode.Deep);
 				
-				Scribe_Collections.Look<Policy>(ref AnimalManager.policies, "AnimalPolicies", LookMode.Deep);
+				Scribe_Collections.Look<BPCPolicy>(ref AnimalManager.policies, "AnimalPolicies", LookMode.Deep);
 				Scribe_Collections.Look<AnimalLink>(ref AnimalManager.links, "AnimalLinks", LookMode.Deep);
 				Scribe_Collections.Look<MapActivePolicy>(ref AnimalManager.activePolicies, "AnimalActivePolicies", LookMode.Deep);
 				
-				Scribe_Collections.Look<Policy>(ref ScheduleManager.policies, "RestrictPolicies", LookMode.Deep);
+				Scribe_Collections.Look<BPCPolicy>(ref ScheduleManager.policies, "RestrictPolicies", LookMode.Deep);
 				Scribe_Collections.Look<ScheduleLink>(ref ScheduleManager.links, "ScheduleLinks", LookMode.Deep);
                 Scribe_Collections.Look<MapActivePolicy>(ref ScheduleManager.activePolicies, "RestrictActivePolicies", LookMode.Deep);
                 
-				Scribe_Collections.Look<Policy>(ref WorkManager.policies, "WorkPolicies", LookMode.Deep);
+				Scribe_Collections.Look<BPCPolicy>(ref WorkManager.policies, "WorkPolicies", LookMode.Deep);
 				Scribe_Collections.Look<WorkLink>(ref WorkManager.links, "WorkLinks", LookMode.Deep);
 				Scribe_Collections.Look<MapActivePolicy>(ref WorkManager.activePolicies, "WorkActivePolicies", LookMode.Deep);
 				
-				Scribe_Collections.Look<Policy>(ref MechManager.policies, "MechPolicies", LookMode.Deep);
+				Scribe_Collections.Look<BPCPolicy>(ref MechManager.policies, "MechPolicies", LookMode.Deep);
 				Scribe_Collections.Look<MechLink>(ref MechManager.links, "MechLinks", LookMode.Deep);
 				Scribe_Collections.Look<MapActivePolicy>(ref MechManager.activePolicies, "MechActivePolicies", LookMode.Deep);
 
 				if (Widget_ModsAvailable.WTBAvailable)
                 {
-					Scribe_Collections.Look<Policy>(ref WeaponsManager.policies, "WeaponsPolicies", LookMode.Deep);
+					Scribe_Collections.Look<BPCPolicy>(ref WeaponsManager.policies, "WeaponsPolicies", LookMode.Deep);
 					Scribe_Collections.Look<WeaponsLink>(ref WeaponsManager.links, "WeaponsLinks", LookMode.Deep);
 					Scribe_Collections.Look<MapActivePolicy>(ref WeaponsManager.activePolicies, "WeaponsActivePolicies", LookMode.Deep);
 				}

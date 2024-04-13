@@ -5,12 +5,12 @@ namespace BetterPawnControl
 {
     public class AlertLevel: IExposable
     {
-        internal Dictionary<Resources.Type, Policy> settings = null;
+        internal Dictionary<Resources.Type, BPCPolicy> settings = null;
         internal int level = 0;
 
         public AlertLevel() { }
 
-        public AlertLevel(int level, Dictionary<Resources.Type, Policy> settings)
+        public AlertLevel(int level, Dictionary<Resources.Type, BPCPolicy> settings)
         {
             this.level = level;
             this.settings = settings;
@@ -28,11 +28,11 @@ namespace BetterPawnControl
         {
             Scribe_Values.Look<int>(ref level, "level", 0, true);
             List<Resources.Type> keys = new List<Resources.Type>();
-            List<Policy> values = new List<Policy>();
+            List<BPCPolicy> values = new List<BPCPolicy>();
 
             if (Scribe.mode == LoadSaveMode.Saving)
             {
-                foreach (KeyValuePair<Resources.Type, Policy> entry in settings)
+                foreach (KeyValuePair<Resources.Type, BPCPolicy> entry in settings)
                 {
                     keys.Add(entry.Key);
                     values.Add(entry.Value);

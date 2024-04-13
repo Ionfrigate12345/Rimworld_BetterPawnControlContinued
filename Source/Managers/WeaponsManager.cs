@@ -28,7 +28,7 @@ namespace BetterPawnControl
             }
         }
 
-        internal static void DeletePolicy(Policy policy)
+        internal static void DeletePolicy(BPCPolicy policy)
         {
             //delete if not default WeaponPolicy
             if (policy != null && policy.id > 0)
@@ -101,7 +101,7 @@ namespace BetterPawnControl
             }
         }
 
-        internal static void LoadState(List<WeaponsLink> links, List<Pawn> pawns, Policy policy)
+        internal static void LoadState(List<WeaponsLink> links, List<Pawn> pawns, BPCPolicy policy)
         {
             List<WeaponsLink> mapLinks = null;
             List<WeaponsLink> zoneLinks = null;
@@ -125,7 +125,7 @@ namespace BetterPawnControl
             WeaponsManager.SetActivePolicy(policy);
         }
 
-        internal static void LoadState(Policy policy)
+        internal static void LoadState(BPCPolicy policy)
         {
             List<Pawn> pawns = Find.CurrentMap.mapPawns.FreeColonists.ToList();
             LoadState(WeaponsManager.links, pawns, policy);
@@ -176,7 +176,7 @@ namespace BetterPawnControl
         internal static void PrintAllWeaponsPolicies(string spacer = "\n")
         {
             Log.Message( "[BPC] ### List Weapons Policies [" + WeaponsManager.policies.Count + "] ###");
-            foreach (Policy p in WeaponsManager.policies)
+            foreach (BPCPolicy p in WeaponsManager.policies)
             {
                 Log.Message("[BPC]\t" + p.ToString());
             }

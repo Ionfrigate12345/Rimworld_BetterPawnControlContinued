@@ -9,7 +9,7 @@ namespace BetterPawnControl
     [StaticConstructorOnStartup]
     class MechManager : Manager<MechLink>
     {
-        internal static void DeletePolicy(Policy policy)
+        internal static void DeletePolicy(BPCPolicy policy)
         {
             //delete if not default AssignPolicy
             if (policy != null && policy.id > 0)
@@ -94,7 +94,7 @@ namespace BetterPawnControl
             }
         }
 
-        internal static void LoadState(List<MechLink> links, List<Pawn> pawns, Policy policy)
+        internal static void LoadState(List<MechLink> links, List<Pawn> pawns, BPCPolicy policy)
         {
             List<MechLink> mapLinks = null;
             List<MechLink> zoneLinks = null;
@@ -131,13 +131,13 @@ namespace BetterPawnControl
             MechManager.SetActivePolicy(policy);
         }
 
-        internal static void LoadState(Policy policy)
+        internal static void LoadState(BPCPolicy policy)
         {
             LoadState(MechManager.links, Mechs().ToList(), policy);
         }
 
         internal static void UpdateState(
-            List<MechLink> links, List<Pawn> pawns, Policy policy)
+            List<MechLink> links, List<Pawn> pawns, BPCPolicy policy)
         {
             List<MechLink> mapLinks = null;
             List<MechLink> zoneLinks = null;
@@ -225,7 +225,7 @@ namespace BetterPawnControl
         internal static void PrintAllMechPolicies(string spacer = "\n")
         {
             Log.Message( "[BPC] ### List Mech Policies [" + MechManager.policies.Count + "] ###");
-            foreach (Policy p in MechManager.policies)
+            foreach (BPCPolicy p in MechManager.policies)
             {
                 Log.Message("[BPC]\t" + p.ToString());
             }

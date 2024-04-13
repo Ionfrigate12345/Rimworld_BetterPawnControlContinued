@@ -123,17 +123,17 @@ namespace BetterPawnControl
 
             for (int i = 0; i < rows; i++)
             {
-                Policy workP = (i < WorkManager.policies.Count) ?
+                BPCPolicy workP = (i < WorkManager.policies.Count) ?
                     WorkManager.policies[i] : null;
-                Policy restrictP = (i < ScheduleManager.policies.Count) ?
+                BPCPolicy restrictP = (i < ScheduleManager.policies.Count) ?
                     ScheduleManager.policies[i] : null;
-                Policy assignP = (i < AssignManager.policies.Count) ?
+                BPCPolicy assignP = (i < AssignManager.policies.Count) ?
                     AssignManager.policies[i] : null;
-                Policy animalP = (i < AnimalManager.policies.Count) ?
+                BPCPolicy animalP = (i < AnimalManager.policies.Count) ?
                     AnimalManager.policies[i] : null;
-                Policy mechP = (i < MechManager.policies.Count) ?
+                BPCPolicy mechP = (i < MechManager.policies.Count) ?
                     MechManager.policies[i] : null;
-                Policy weaponsP = (i < WeaponsManager.policies.Count) ?
+                BPCPolicy weaponsP = (i < WeaponsManager.policies.Count) ?
                     WeaponsManager.policies[i] : null;
 
                 Rect policiesRow = listing_Standard.GetRect(NORMAL_HEIGHT);
@@ -231,7 +231,7 @@ namespace BetterPawnControl
         /// Draw table row with AnimalPolicy label, rename button and delete 
         /// button
         /// </summary>
-        private static void DoRow( Rect rect, Policy workP, Policy restrictP, Policy assignP, Policy animalP, Policy mechP, Policy weaponsP)
+        private static void DoRow( Rect rect, BPCPolicy workP, BPCPolicy restrictP, BPCPolicy assignP, BPCPolicy animalP, BPCPolicy mechP, BPCPolicy weaponsP)
         {
             float one = rect.width / NTABSCOLUMNS;
             float two = one * 2f;
@@ -258,7 +258,7 @@ namespace BetterPawnControl
             DoColumn(rect6, weaponsP, Resources.Type.weapons);
         }
 
-        private static void DoColumn(Rect rect, Policy policy, Resources.Type type)
+        private static void DoColumn(Rect rect, BPCPolicy policy, Resources.Type type)
         {
             GUI.BeginGroup(rect);
             WidgetRow widgetRow = new WidgetRow(0f, 0f, UIDirection.RightThenUp, 99999f, 4f);
@@ -376,7 +376,7 @@ namespace BetterPawnControl
                 int lastItem = WorkManager.policies.Count - 1;
                 int label_id = WorkManager.policies[lastItem].id;
                 label_id++;
-                WorkManager.policies.Add(new Policy(label_id, "BPC.WorkPolicy".Translate() + label_id));
+                WorkManager.policies.Add(new BPCPolicy(label_id, "BPC.WorkPolicy".Translate() + label_id));
             }
 
             if (ScheduleManager.policies.Count < MAX_POLICIES && Widgets.ButtonText(rect2, "BPC.NewRestrictPolicy".Translate(), true, false, true))
@@ -384,7 +384,7 @@ namespace BetterPawnControl
                 int lastItem = ScheduleManager.policies.Count - 1;
                 int label_id = ScheduleManager.policies[lastItem].id;
                 label_id++;
-                ScheduleManager.policies.Add(new Policy(label_id, "BPC.RestrictPolicy".Translate() + label_id));
+                ScheduleManager.policies.Add(new BPCPolicy(label_id, "BPC.RestrictPolicy".Translate() + label_id));
             }
 
             if (AssignManager.policies.Count < MAX_POLICIES && Widgets.ButtonText(rect3, "BPC.NewAssignPolicy".Translate(), true, false, true))
@@ -392,7 +392,7 @@ namespace BetterPawnControl
                 int lastItem = AssignManager.policies.Count - 1;
                 int label_id = AssignManager.policies[lastItem].id;
                 label_id++;
-                AssignManager.policies.Add( new Policy(label_id, "BPC.AssignPolicy".Translate() + label_id));
+                AssignManager.policies.Add( new BPCPolicy(label_id, "BPC.AssignPolicy".Translate() + label_id));
             }
 
             if (AnimalManager.policies.Count < MAX_POLICIES && Widgets.ButtonText(rect4, "BPC.NewAnimalPolicy".Translate(), true, false, true))
@@ -400,7 +400,7 @@ namespace BetterPawnControl
                 int lastItem = AnimalManager.policies.Count - 1;
                 int label_id = AnimalManager.policies[lastItem].id;
                 label_id++;
-                AnimalManager.policies.Add(new Policy(label_id, "BPC.AnimalPolicy".Translate() + label_id));
+                AnimalManager.policies.Add(new BPCPolicy(label_id, "BPC.AnimalPolicy".Translate() + label_id));
             }
 
             if (MechManager.policies.Count < MAX_POLICIES && Widgets.ButtonText(rect5, "BPC.NewMechPolicy".Translate(), true, false, true))
@@ -408,7 +408,7 @@ namespace BetterPawnControl
                 int lastItem = MechManager.policies.Count - 1;
                 int label_id = MechManager.policies[lastItem].id;
                 label_id++;
-                MechManager.policies.Add(new Policy(label_id, "BPC.MechPolicy".Translate() + label_id));
+                MechManager.policies.Add(new BPCPolicy(label_id, "BPC.MechPolicy".Translate() + label_id));
             }
             
             if (WeaponsManager.policies.Count < MAX_POLICIES && Widgets.ButtonText(rect6, "BPC.NewWeaponsPolicy".Translate(), true, false, true))
@@ -416,7 +416,7 @@ namespace BetterPawnControl
                 int lastItem = WeaponsManager.policies.Count - 1;
                 int label_id = WeaponsManager.policies[lastItem].id;
                 label_id++;
-                WeaponsManager.policies.Add(new Policy(label_id, "BPC.WeaponsPolicy".Translate() + label_id));
+                WeaponsManager.policies.Add(new BPCPolicy(label_id, "BPC.WeaponsPolicy".Translate() + label_id));
             }
 
         }
@@ -743,40 +743,40 @@ namespace BetterPawnControl
             switch(type)
             {
                 case Resources.Type.work:
-                    foreach (Policy policy in WorkManager.policies)
+                    foreach (BPCPolicy policy in WorkManager.policies)
                     {
                         FillMenu(type, alertLevel, list, policy);
                     }
                     break;
                 
                 case Resources.Type.restrict:
-                    foreach (Policy policy in ScheduleManager.policies)
+                    foreach (BPCPolicy policy in ScheduleManager.policies)
                     {
                         FillMenu(type, alertLevel, list, policy);
                     }
                     break;
 
                 case Resources.Type.assign:
-                    foreach (Policy policy in AssignManager.policies)
+                    foreach (BPCPolicy policy in AssignManager.policies)
                     {
                         FillMenu(type, alertLevel, list, policy);
                     }
                     break;
 
                 case Resources.Type.animal:
-                    foreach (Policy policy in AnimalManager.policies)
+                    foreach (BPCPolicy policy in AnimalManager.policies)
                     {
                         FillMenu(type, alertLevel, list, policy);
                     }
                     break;
                 case Resources.Type.mech:
-                    foreach (Policy policy in MechManager.policies)
+                    foreach (BPCPolicy policy in MechManager.policies)
                     {
                         FillMenu(type, alertLevel, list, policy);
                     }
                     break;
                 case Resources.Type.weapons:
-                    foreach (Policy policy in WeaponsManager.policies)
+                    foreach (BPCPolicy policy in WeaponsManager.policies)
                     {
                         FillMenu(type, alertLevel, list, policy);
                     }
@@ -785,7 +785,7 @@ namespace BetterPawnControl
             Find.WindowStack.Add(new FloatMenu(list));
         }
 
-        private static void FillMenu(Resources.Type type, int alertLevel, List<FloatMenuOption> list, Policy policy)
+        private static void FillMenu(Resources.Type type, int alertLevel, List<FloatMenuOption> list, BPCPolicy policy)
         {
             list.Add(
                 new FloatMenuOption(

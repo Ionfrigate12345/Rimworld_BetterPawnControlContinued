@@ -8,7 +8,7 @@ namespace BetterPawnControl
 {
     abstract class Manager<T>
 	{
-		internal static List<Policy> policies = new List<Policy>();
+		internal static List<BPCPolicy> policies = new List<BPCPolicy>();
 		internal static List<MapActivePolicy> activePolicies =
 			new List<MapActivePolicy>();
 		internal static List<T> links = new List<T>();
@@ -17,17 +17,17 @@ namespace BetterPawnControl
         
 		static Manager()
         {
-            Policy defaultPolicy = new Policy(policies.Count, "BPC.Auto".Translate());
+            BPCPolicy defaultPolicy = new BPCPolicy(policies.Count, "BPC.Auto".Translate());
             policies.Add(defaultPolicy);
             activePolicies.Add(new MapActivePolicy(0, defaultPolicy));
         }
 
         internal static void ForceInit()
         {
-            policies = new List<Policy>();
+            policies = new List<BPCPolicy>();
             activePolicies = new List<MapActivePolicy>();
             links = new List<T>();
-            Policy defaultPolicy = new Policy(policies.Count, "BPC.Auto".Translate());
+            BPCPolicy defaultPolicy = new BPCPolicy(policies.Count, "BPC.Auto".Translate());
             policies.Add(defaultPolicy);
             activePolicies.Add(new MapActivePolicy(0, defaultPolicy));
         }
@@ -71,17 +71,17 @@ namespace BetterPawnControl
 			}
 		}
 
-		internal static Policy GetActivePolicy()
+		internal static BPCPolicy GetActivePolicy()
 		{
 			return GetActivePolicy(Find.CurrentMap.uniqueID);			
 		}
 
-		internal static void SetActivePolicy(Policy policy)
+		internal static void SetActivePolicy(BPCPolicy policy)
 		{
 			SetActivePolicy(Find.CurrentMap.uniqueID, policy);
 		}
 
-		internal static Policy GetActivePolicy(int mapId)
+		internal static BPCPolicy GetActivePolicy(int mapId)
 		{
 			MapActivePolicy mapPolicy = activePolicies.Find(x => x.mapId == mapId);
 			if (mapPolicy == null)
@@ -93,12 +93,12 @@ namespace BetterPawnControl
 			return mapPolicy.activePolicy;
 		}
 
-		internal static Policy GetPolicy(int selected)
+		internal static BPCPolicy GetPolicy(int selected)
 		{
 			return policies.Find(x => x.id == selected);
 		}
 
-		internal static void SetActivePolicy(int mapId, Policy policy)
+		internal static void SetActivePolicy(int mapId, BPCPolicy policy)
 		{
 			MapActivePolicy map = activePolicies.Find(x => x.mapId == mapId);
 			if (map != null)

@@ -4,14 +4,14 @@ using Verse;
 namespace BetterPawnControl
 {
 
-    public class Dialog_RenamePolicy : Verse.Dialog_RenamePolicy
+    public class Dialog_RenamePolicy : Verse.Dialog_Rename<BPCPolicy>
     {
-        private string curName = null;
-        private Policy policy = null;
+        //private string curName = null;//From 1.5 its in lib class now.
+        private BPCPolicy policy = null;
         private readonly int maxLength = 12;
         private Resources.Type type = Resources.Type.animal;
 
-        public Dialog_RenamePolicy(Policy policy, Resources.Type type) : base(policy)
+        public Dialog_RenamePolicy(BPCPolicy policy, Resources.Type type) : base(policy)
         {
             this.policy = policy;
             this.curName = policy.label;
@@ -34,37 +34,37 @@ namespace BetterPawnControl
             switch (this.type)
             {
                 case Resources.Type.animal:
-                    if (AnimalManager.policies.Any((Policy d) => d.label == name))
+                    if (AnimalManager.policies.Any((BPCPolicy d) => d.label == name))
                     {
                         str = "NameIsInUse".Translate();
                     }
                     break;
                 case Resources.Type.assign:
-                    if (AssignManager.policies.Any((Policy d) => d.label == name))
+                    if (AssignManager.policies.Any((BPCPolicy d) => d.label == name))
                     {
                         str = "NameIsInUse".Translate();
                     }
                     break;
                 case Resources.Type.restrict:
-                    if (ScheduleManager.policies.Any((Policy d) => d.label == name))
+                    if (ScheduleManager.policies.Any((BPCPolicy d) => d.label == name))
                     {
                         str = "NameIsInUse".Translate();
                     }
                     break;
                 case Resources.Type.work:
-                    if (WorkManager.policies.Any((Policy d) => d.label == name))
+                    if (WorkManager.policies.Any((BPCPolicy d) => d.label == name))
                     {
                         str = "NameIsInUse".Translate();
                     }
                     break;
                 case Resources.Type.mech:
-                    if (MechManager.policies.Any((Policy d) => d.label == name))
+                    if (MechManager.policies.Any((BPCPolicy d) => d.label == name))
                     {
                         str = "NameIsInUse".Translate();
                     }
                     break;
                 case Resources.Type.weapons:
-                    if (WeaponsManager.policies.Any((Policy d) => d.label == name))
+                    if (WeaponsManager.policies.Any((BPCPolicy d) => d.label == name))
                     {
                         str = "NameIsInUse".Translate();
                     }

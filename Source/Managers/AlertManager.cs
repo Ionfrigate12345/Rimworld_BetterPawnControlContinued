@@ -31,7 +31,7 @@ namespace BetterPawnControl
             if (!_initialized)
             {
                 alertLevelsList = new List<AlertLevel>();
-                Dictionary<Resources.Type, Policy> noAlert = new Dictionary<Resources.Type, Policy>
+                Dictionary<Resources.Type, BPCPolicy> noAlert = new Dictionary<Resources.Type, BPCPolicy>
                 {
                     { Resources.Type.work, WorkManager.GetActivePolicy() },
                     { Resources.Type.restrict, ScheduleManager.GetActivePolicy() },
@@ -41,7 +41,7 @@ namespace BetterPawnControl
                     { Resources.Type.weapons, WeaponsManager.GetActivePolicy() }
                 };
 
-                Dictionary<Resources.Type, Policy> alertOn = new Dictionary<Resources.Type, Policy>(noAlert);
+                Dictionary<Resources.Type, BPCPolicy> alertOn = new Dictionary<Resources.Type, BPCPolicy>(noAlert);
                 alertLevelsList.Add(new AlertLevel(0, noAlert));
                 alertLevelsList.Add(new AlertLevel(1, alertOn));
                 _initialized = true;
@@ -66,14 +66,14 @@ namespace BetterPawnControl
             }
         }
 
-        internal static Policy GetAlertPolicy(int level, Resources.Type type)
+        internal static BPCPolicy GetAlertPolicy(int level, Resources.Type type)
         {
             if (alertLevelsList.NullOrEmpty())
             {
                 ForceInit();
             }
 
-            Policy alertPolicy = alertLevelsList.Find(x => x.level == level).settings.TryGetValue(type);
+            BPCPolicy alertPolicy = alertLevelsList.Find(x => x.level == level).settings.TryGetValue(type);
 
             if (alertPolicy == null) 
             {
@@ -100,11 +100,11 @@ namespace BetterPawnControl
             return alertPolicy;
         }
 
-        internal static void SetAlertPolicy(int level, Resources.Type type, Policy policy)
+        internal static void SetAlertPolicy(int level, Resources.Type type, BPCPolicy policy)
         {
             alertLevelsList[level].settings[type] = policy;
         }
-        internal static void SaveState(int level, Resources.Type type, Policy policy)
+        internal static void SaveState(int level, Resources.Type type, BPCPolicy policy)
         {
             alertLevelsList.Find(x => x.level == level).settings.SetOrAdd(type, policy);
         }
@@ -131,7 +131,7 @@ namespace BetterPawnControl
             List<AlertLevel> alertList = alertLevelsList.FindAll(x => x.level == level);
             foreach (AlertLevel alert in alertList)
             {
-                foreach (KeyValuePair<Resources.Type, Policy> entry in alert.settings)
+                foreach (KeyValuePair<Resources.Type, BPCPolicy> entry in alert.settings)
                 {
                     switch(entry.Key)
                     {

@@ -163,7 +163,7 @@ namespace BetterPawnControl
             }
         }
 
-        internal static void DeletePolicy(Policy policy)
+        internal static void DeletePolicy(BPCPolicy policy)
         {
             //delete if not default AssignPolicy
             if (policy != null && policy.id > 0)
@@ -341,7 +341,7 @@ namespace BetterPawnControl
             }
         }
         
-        internal static void UpdateState( List<AssignLink> links, List<Pawn> pawns, Policy policy)
+        internal static void UpdateState( List<AssignLink> links, List<Pawn> pawns, BPCPolicy policy)
         {
             List<AssignLink> mapLinks = null;
             List<AssignLink> zoneLinks = null;
@@ -368,7 +368,7 @@ namespace BetterPawnControl
             AssignManager.SetActivePolicy(policy);
         }
 
-        internal static void LoadState(List<AssignLink> links, List<Pawn> pawns, Policy policy)
+        internal static void LoadState(List<AssignLink> links, List<Pawn> pawns, BPCPolicy policy)
         {
             List<AssignLink> mapLinks = null;
             List<AssignLink> zoneLinks = null;
@@ -401,7 +401,7 @@ namespace BetterPawnControl
             AssignManager.SetActivePolicy(policy);
         }
 
-        internal static void LoadState(Policy policy)
+        internal static void LoadState(BPCPolicy policy)
         {
             List<Pawn> pawns = Find.CurrentMap.mapPawns.FreeColonists.ToList();
             LoadState(AssignManager.links, pawns, policy);
@@ -433,7 +433,7 @@ namespace BetterPawnControl
 
         internal static void CopyToClipboard()
         {
-            Policy policy = GetActivePolicy();
+            BPCPolicy policy = GetActivePolicy();
             if (AssignManager.clipboard != null)
             {
                 clipboard = new List<AssignLink>();
@@ -451,7 +451,7 @@ namespace BetterPawnControl
 
         internal static void PasteToActivePolicy()
         {
-            Policy policy = GetActivePolicy();
+            BPCPolicy policy = GetActivePolicy();
             if (!AssignManager.clipboard.NullOrEmpty() && AssignManager.clipboard[0].zone != policy.id)
             {
                 WorkManager.links.RemoveAll(x => x.zone == policy.id);
@@ -498,7 +498,7 @@ namespace BetterPawnControl
         internal static void PrintAllAssignPolicies(string spacer = "\n")
         {
             Log.Message("[BPC] === List Policies START [" + AssignManager.policies.Count + "] ===");
-            foreach (Policy p in AssignManager.policies)
+            foreach (BPCPolicy p in AssignManager.policies)
             {
                 Log.Message("[BPC]\t" + p.ToString());
             }

@@ -13,11 +13,11 @@ namespace BetterPawnControl
         internal static void FixActivePolicies()
         {
             activePolicies = new List<MapActivePolicy>();
-            activePolicies.Add(new MapActivePolicy(0, new Policy(0, "BPC.Auto".Translate())));
+            activePolicies.Add(new MapActivePolicy(0, new BPCPolicy(0, "BPC.Auto".Translate())));
         }
 
 
-        internal static void DeletePolicy(Policy policy)
+        internal static void DeletePolicy(BPCPolicy policy)
         {
             //delete if not default AssignPolicy
             if (policy != null && policy.id > 0)
@@ -143,7 +143,7 @@ namespace BetterPawnControl
             }
         }
 
-        internal static void UpdateState(List<ScheduleLink> links, List<Pawn> pawns, Policy policy)
+        internal static void UpdateState(List<ScheduleLink> links, List<Pawn> pawns, BPCPolicy policy)
         {
             List<ScheduleLink> mapLinks = null;
             List<ScheduleLink> zoneLinks = null;
@@ -168,7 +168,7 @@ namespace BetterPawnControl
             ScheduleManager.SetActivePolicy(policy);
         }
 
-        internal static void LoadState(List<ScheduleLink> links, List<Pawn> pawns, Policy policy)
+        internal static void LoadState(List<ScheduleLink> links, List<Pawn> pawns, BPCPolicy policy)
         {
             List<ScheduleLink> mapLinks = null;
             List<ScheduleLink> zoneLinks = null;
@@ -198,7 +198,7 @@ namespace BetterPawnControl
             ScheduleManager.SetActivePolicy(policy);
         }
 
-        internal static void LoadState(Policy policy)
+        internal static void LoadState(BPCPolicy policy)
         {
             List<Pawn> pawns = Find.CurrentMap.mapPawns.FreeColonists.ToList();
             LoadState(ScheduleManager.links, pawns, policy);
@@ -207,7 +207,7 @@ namespace BetterPawnControl
         internal static void PrintAllSchedulePolicies(string spacer = "\n")
         {
             Log.Message("[BPC] === List Policies START [" + ScheduleManager.policies.Count +  "] ===");
-            foreach (Policy p in ScheduleManager.policies)
+            foreach (BPCPolicy p in ScheduleManager.policies)
             {
                 Log.Message("[BPC]\t" + p.ToString());
             }
@@ -229,7 +229,7 @@ namespace BetterPawnControl
 
         internal static void CopyToClipboard()
         {
-            Policy policy = GetActivePolicy();
+            BPCPolicy policy = GetActivePolicy();
             if (ScheduleManager.clipboard != null)
             {
                 ScheduleManager.clipboard = new List<ScheduleLink>();
@@ -246,7 +246,7 @@ namespace BetterPawnControl
         }
         internal static void PasteToActivePolicy()
         {
-            Policy policy = GetActivePolicy();
+            BPCPolicy policy = GetActivePolicy();
             if (!ScheduleManager.clipboard.NullOrEmpty() && ScheduleManager.clipboard[0].zone != policy.id)
             {
                 ScheduleManager.links.RemoveAll(x => x.zone == policy.id);

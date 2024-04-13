@@ -10,7 +10,7 @@ namespace BetterPawnControl
     {
         internal static List<WorkLink> clipboard = new List<WorkLink>();
 
-        internal static void DeletePolicy(Policy policy)
+        internal static void DeletePolicy(BPCPolicy policy)
         {
             //delete if not default AssignPolicy
             if (policy != null && policy.id > 0)
@@ -125,7 +125,7 @@ namespace BetterPawnControl
             }
         }
 
-        internal static void LoadState(List<WorkLink> links, List<Pawn> pawns, Policy policy)
+        internal static void LoadState(List<WorkLink> links, List<Pawn> pawns, BPCPolicy policy)
         {
             List<WorkLink> mapLinks = null;
             List<WorkLink> zoneLinks = null;
@@ -150,7 +150,7 @@ namespace BetterPawnControl
             WorkManager.SetActivePolicy(policy);
         }
 
-        internal static void LoadState(Policy policy)
+        internal static void LoadState(BPCPolicy policy)
         {
             List<Pawn> pawns = Find.CurrentMap.mapPawns.FreeColonists.ToList();
             LoadState(WorkManager.links, pawns, policy);
@@ -209,7 +209,7 @@ namespace BetterPawnControl
 
         internal static void CopyToClipboard()
         {
-            Policy policy = GetActivePolicy();
+            BPCPolicy policy = GetActivePolicy();
             if (WorkManager.clipboard != null)
             {
                 clipboard = new List<WorkLink>();
@@ -227,7 +227,7 @@ namespace BetterPawnControl
 
         internal static void PasteToActivePolicy()
         {
-            Policy policy = GetActivePolicy();
+            BPCPolicy policy = GetActivePolicy();
             if (!WorkManager.clipboard.NullOrEmpty() && WorkManager.clipboard[0].zone != policy.id)
             {
                 WorkManager.links.RemoveAll(x => x.zone == policy.id);
@@ -243,7 +243,7 @@ namespace BetterPawnControl
         internal static void PrintAllWorkPolicies(string spacer = "\n")
         {
             Log.Message("[BPC] === List Policies START [" + WorkManager.policies.Count + "] ===");
-            foreach (Policy p in AssignManager.policies)
+            foreach (BPCPolicy p in AssignManager.policies)
             {
                 Log.Message("[BPC]\t" + p.ToString());
             }
