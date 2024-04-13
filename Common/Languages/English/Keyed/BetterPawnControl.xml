@@ -38,6 +38,7 @@
 	<BPC.SelectedDefaultOutfit>Outfit</BPC.SelectedDefaultOutfit>
 	<BPC.SelectedDefaultFood>Food</BPC.SelectedDefaultFood>
 	<BPC.SelectedDefaultDrug>Drug</BPC.SelectedDefaultDrug>
+	<BPC.SelectedDefaultReadings>Reading</BPC.SelectedDefaultReadings>
 	<BPC.SelectedDefaultMeds>Medical Care</BPC.SelectedDefaultMeds>
 	
 	<BPC.SelectedPrisionerDefaultFood>Food</BPC.SelectedPrisionerDefaultFood>
@@ -46,6 +47,7 @@
 	<BPC.SelectedSlaveDefaultOutfit>Outfit</BPC.SelectedSlaveDefaultOutfit>	
 	<BPC.SelectedSlaveDefaultFood>Food</BPC.SelectedSlaveDefaultFood>
 	<BPC.SelectedSlaveDefaultDrugs>Drugs</BPC.SelectedSlaveDefaultDrugs>
+	<BPC.SelectedSlaveDefaultReadings>Reading</BPC.SelectedSlaveDefaultReadings>
 	<BPC.SelectedSlaveDefaultMeds>Medical Care</BPC.SelectedSlaveDefaultMeds>
 	
 	<BPC.ColonistDefaultHeader>Colonist Defaults</BPC.ColonistDefaultHeader>
