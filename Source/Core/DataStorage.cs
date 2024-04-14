@@ -1,4 +1,5 @@
-﻿using RimWorld;
+﻿using BetterPawnControl.Helpers;
+using RimWorld;
 using RimWorld.Planet;
 using Verse;
 
@@ -68,23 +69,18 @@ namespace BetterPawnControl
                     Scribe_Values.Look<MedicalCareCategory>(ref AssignManager._defaulSlaveMedCare, "DefaultSlaveMedCare");
 				}
 				
-				Scribe_Collections.Look<BPCPolicy>(ref AssignManager.policies,"AssignPolicies", LookMode.Deep);
 				Scribe_Collections.Look<AssignLink>(ref AssignManager.links, "AssignLinks", LookMode.Deep);
 				Scribe_Collections.Look<MapActivePolicy>(ref AssignManager.activePolicies, "AssignActivePolicies", LookMode.Deep);
 				
-				Scribe_Collections.Look<BPCPolicy>(ref AnimalManager.policies, "AnimalPolicies", LookMode.Deep);
 				Scribe_Collections.Look<AnimalLink>(ref AnimalManager.links, "AnimalLinks", LookMode.Deep);
 				Scribe_Collections.Look<MapActivePolicy>(ref AnimalManager.activePolicies, "AnimalActivePolicies", LookMode.Deep);
 				
-				Scribe_Collections.Look<BPCPolicy>(ref ScheduleManager.policies, "RestrictPolicies", LookMode.Deep);
 				Scribe_Collections.Look<ScheduleLink>(ref ScheduleManager.links, "ScheduleLinks", LookMode.Deep);
                 Scribe_Collections.Look<MapActivePolicy>(ref ScheduleManager.activePolicies, "RestrictActivePolicies", LookMode.Deep);
                 
-				Scribe_Collections.Look<BPCPolicy>(ref WorkManager.policies, "WorkPolicies", LookMode.Deep);
 				Scribe_Collections.Look<WorkLink>(ref WorkManager.links, "WorkLinks", LookMode.Deep);
 				Scribe_Collections.Look<MapActivePolicy>(ref WorkManager.activePolicies, "WorkActivePolicies", LookMode.Deep);
 				
-				Scribe_Collections.Look<BPCPolicy>(ref MechManager.policies, "MechPolicies", LookMode.Deep);
 				Scribe_Collections.Look<MechLink>(ref MechManager.links, "MechLinks", LookMode.Deep);
 				Scribe_Collections.Look<MapActivePolicy>(ref MechManager.activePolicies, "MechActivePolicies", LookMode.Deep);
 
@@ -93,9 +89,48 @@ namespace BetterPawnControl
 					Scribe_Collections.Look<BPCPolicy>(ref WeaponsManager.policies, "WeaponsPolicies", LookMode.Deep);
 					Scribe_Collections.Look<WeaponsLink>(ref WeaponsManager.links, "WeaponsLinks", LookMode.Deep);
 					Scribe_Collections.Look<MapActivePolicy>(ref WeaponsManager.activePolicies, "WeaponsActivePolicies", LookMode.Deep);
-				}
+                }
 
-				Scribe_Values.Look<int>(ref AlertManager._alertLevel, "ActiveLevel", 0, true);
+				if (Scribe.mode == LoadSaveMode.Saving)
+                {
+                    //Note of Ionfrigate12345 during the update to 1.5:
+                    //In save mode, we need to avoid multiple groups of policies sharing the same policy (with same id and label), or deep save will throw warnings and errors (though they dont seem harmful).
+                    //I haven't found a better way than creating empty sub classes for policies to trick the deep save that they are different.
+                    var assignPolicies = ExposeDataPolicyListConverter.ToAssignPolicyList(AssignManager.policies);
+                    Scribe_Collections.Look<BPCPolicyAssign>(ref assignPolicies, "AssignPolicies", LookMode.Deep);
+
+                    var animalPolicies = ExposeDataPolicyListConverter.ToAnimalPolicyList(AnimalManager.policies);
+                    Scribe_Collections.Look<BPCPolicyAnimal>(ref animalPolicies, "AnimalPolicies", LookMode.Deep);
+
+                    var schedulePolicies = ExposeDataPolicyListConverter.ToSchedulePolicyList(ScheduleManager.policies);
+                    Scribe_Collections.Look<BPCPolicySchedule>(ref schedulePolicies, "RestrictPolicies", LookMode.Deep);
+
+                    var workPolicies = ExposeDataPolicyListConverter.ToWorkPolicyList(WorkManager.policies);
+                    Scribe_Collections.Look<BPCPolicyWork>(ref workPolicies, "WorkPolicies", LookMode.Deep);
+
+                    var mechPolicies = ExposeDataPolicyListConverter.ToMechPolicyList(MechManager.policies);
+                    Scribe_Collections.Look<BPCPolicyMech>(ref mechPolicies, "MechPolicies", LookMode.Deep);
+
+                    if (Widget_ModsAvailable.WTBAvailable)
+                    {
+                        var weaponsPolicies = ExposeDataPolicyListConverter.ToWeaponPolicyList(WeaponsManager.policies);
+                        Scribe_Collections.Look<BPCPolicyWeapon>(ref weaponsPolicies, "WeaponsPolicies", LookMode.Deep);
+                    }
+                }
+				else
+				{
+                    Scribe_Collections.Look<BPCPolicy>(ref AssignManager.policies, "AssignPolicies", LookMode.Deep);
+                    Scribe_Collections.Look<BPCPolicy>(ref AnimalManager.policies, "AnimalPolicies", LookMode.Deep);
+                    Scribe_Collections.Look<BPCPolicy>(ref ScheduleManager.policies, "RestrictPolicies", LookMode.Deep);
+                    Scribe_Collections.Look<BPCPolicy>(ref WorkManager.policies, "WorkPolicies", LookMode.Deep);
+                    Scribe_Collections.Look<BPCPolicy>(ref MechManager.policies, "MechPolicies", LookMode.Deep);
+                    if (Widget_ModsAvailable.WTBAvailable)
+                    {
+                        Scribe_Collections.Look<BPCPolicy>(ref WeaponsManager.policies, "WeaponsPolicies", LookMode.Deep);
+                    }
+                }
+
+                Scribe_Values.Look<int>(ref AlertManager._alertLevel, "ActiveLevel", 0, true);
 				Scribe_Collections.Look<AlertLevel>(ref AlertManager.alertLevelsList, "AlertLevelsList", LookMode.Deep);
 
 				if (Scribe.mode == LoadSaveMode.LoadingVars && WorkManager.activePolicies == null)

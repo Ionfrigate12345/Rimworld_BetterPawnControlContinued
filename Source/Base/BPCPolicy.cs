@@ -1,5 +1,6 @@
 ﻿using Verse;
 using RimWorld;
+using BetterPawnControl.Helpers;
 
 namespace BetterPawnControl
 {
@@ -58,6 +59,36 @@ namespace BetterPawnControl
         {
             id = other.id;
             label = other.label;
+        }
+
+        public BPCPolicyAnimal ToAnimalPolicy()
+        {
+            return new BPCPolicyAnimal(id, label);
+        }
+
+        public BPCPolicyAssign ToAssignPolicy()
+        {
+            return new BPCPolicyAssign(id, label);
+        }
+
+        public BPCPolicyMech ToMechPolicy()
+        {
+            return new BPCPolicyMech(id, label);
+        }
+
+        public BPCPolicySchedule ToSchedulePolicy()
+        {
+            return new BPCPolicySchedule(id, label);
+        }
+
+        public BPCPolicyWeapon ToWeaponPolicy()
+        {
+            return new BPCPolicyWeapon(id, label);
+        }
+
+        public BPCPolicyWork ToWorkPolicy()
+        {
+            return new BPCPolicyWork(id, label);
         }
 
         /*public override string GetUniqueLoadID()

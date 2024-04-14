@@ -73,6 +73,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Base\BPCPolicyAnimal.cs" />
+    <Compile Include="Base\BPCPolicyAssign.cs" />
+    <Compile Include="Base\BPCPolicyMech.cs" />
+    <Compile Include="Base\BPCPolicySchedule.cs" />
+    <Compile Include="Base\BPCPolicyWeapon.cs" />
+    <Compile Include="Base\BPCPolicyWork.cs" />
+    <Compile Include="Helpers\ExposeDataPolicyListConverter.cs" />
     <Compile Include="Base\WeaponsLink.cs" />
     <Compile Include="Base\MechLink.cs" />
     <Compile Include="Base\AnimalLink.cs" />
