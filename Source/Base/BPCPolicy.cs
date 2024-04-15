@@ -1,6 +1,6 @@
 ﻿using Verse;
 using RimWorld;
-using BetterPawnControl.Helpers;
+using System;
 
 namespace BetterPawnControl
 {
@@ -22,7 +22,7 @@ namespace BetterPawnControl
 
         public string InspectLabel => label;*/
 
-        protected override string LoadKey => "BPC_" + ToString();
+        protected override string LoadKey => "BPC_" + ToString() + Guid.NewGuid();
 
         public BPCPolicy() {
             id = 0;
@@ -37,7 +37,7 @@ namespace BetterPawnControl
 
         public override string ToString()
         {
-            return "Id:" + id + "  Label: " + label;
+            return "Id:" + id + "  Label: " + label + "_";
         }
 
         public virtual bool Equals(BPCPolicy other)
@@ -59,36 +59,6 @@ namespace BetterPawnControl
         {
             id = other.id;
             label = other.label;
-        }
-
-        public BPCPolicyAnimal ToAnimalPolicy()
-        {
-            return new BPCPolicyAnimal(id, label);
-        }
-
-        public BPCPolicyAssign ToAssignPolicy()
-        {
-            return new BPCPolicyAssign(id, label);
-        }
-
-        public BPCPolicyMech ToMechPolicy()
-        {
-            return new BPCPolicyMech(id, label);
-        }
-
-        public BPCPolicySchedule ToSchedulePolicy()
-        {
-            return new BPCPolicySchedule(id, label);
-        }
-
-        public BPCPolicyWeapon ToWeaponPolicy()
-        {
-            return new BPCPolicyWeapon(id, label);
-        }
-
-        public BPCPolicyWork ToWorkPolicy()
-        {
-            return new BPCPolicyWork(id, label);
         }
 
         /*public override string GetUniqueLoadID()

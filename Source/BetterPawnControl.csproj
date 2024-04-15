@@ -19,7 +19,7 @@
     <OutputPath Condition="Exists('$(Home)\Library')">$(Home)\Library\Application Support\Steam\steamapps\common\RimWorld\RimWorldMac.app\Mods\BetterPawnControl\Assemblies\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <WarningLevel>5</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <OutputPath>..\v1.5\Assemblies\</OutputPath>
@@ -73,13 +73,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Base\BPCPolicyAnimal.cs" />
-    <Compile Include="Base\BPCPolicyAssign.cs" />
-    <Compile Include="Base\BPCPolicyMech.cs" />
-    <Compile Include="Base\BPCPolicySchedule.cs" />
-    <Compile Include="Base\BPCPolicyWeapon.cs" />
-    <Compile Include="Base\BPCPolicyWork.cs" />
-    <Compile Include="Helpers\ExposeDataPolicyListConverter.cs" />
     <Compile Include="Base\WeaponsLink.cs" />
     <Compile Include="Base\MechLink.cs" />
     <Compile Include="Base\AnimalLink.cs" />
